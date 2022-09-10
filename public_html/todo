@@ -1,0 +1,11 @@
+Todo
+----
+
+
+updates
+-------
+file : check index.html form
+line : <form method="post" action="register_school.php">
+update as : <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+
+use variables to change the language

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HMPS</title>
+    <link rel="icon" href="images/logo.jpg">
+    <meta name=”viewport” content=”width=device-width, initial-scale=1″>
+    <meta name="KeyWords" content="hettipola,model,primary,school,sri lanka,kurunegala,north western province,wayaba" />
+    <meta name="Description" content="Hettipola model primary school is in Kurunegala district  Sri lanka." />
+    <meta name="author" content="Malith Perera">
+    <link href="css/styles.css" rel="stylesheet" type="text/css"  media="screen, projection">
+</head>
+
+<body>
+<div>
+<div style="font-size:1em; text-align:center;">Question</div>
+<form action="create_paper.php" method="get">
+<table>
+  <tbody>
+      <tr>
+          <td style="padding: 4px;">Quation</td>
+          <td style="padding: 4px;"> <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea></td>
+      </tr>
+      <tr>
+          <td style="padding: 4px;">Head</td>
+          <td style="padding: 4px;"> <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea></td>
+      </tr>
+      <tr>
+          <td style="padding: 4px;">Foot</td>
+          <td style="padding: 4px;"> <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea></td>
+      </tr>
+
+      <tr><td>Question image</td><td><input type="file" id="myfile" name="myfile"></td></tr>
+
+      <tr><td>Answer images</td><td><input type="file" id="myfile" name="myfile" multiple="multiple"></td></tr>
+
+      <tr><td></td><td><div style="padding: 4px; text-align:right;"><input type="submit"></div></td></tr>
+
+  </tbody>
+</table>
+</form>
+</div>
+
+</body>
+</html>
