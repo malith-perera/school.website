@@ -8,7 +8,7 @@
 <link rel="icon" href="images/logo.jpg">
 <meta name=”viewport” content=”width=device-width, initial-scale=1″>
 <meta name="KeyWords" content="school, website, create, register">
-<meta name="Description" content="Create a wholy new, full fledge school website for your school or expand your existing school website into a full functional website in few seconds. With this users can make school announcements, mark attendence , generate and view school reports, handle school accounts, hadle school recruitments, keep a good relation with students and parents and many more">
+<meta name="Description" content="Create a wholly new, full fledge school website for your school or expand your existing school website into a full functional website in few seconds. School website users can publish lessons, do online tests, make school announcements, mark attendence, generate, view and compare school reports, manage school accounts, handle new recruitments, keep a good connection with students, teachers and parents and do many more.">
 <meta name="author" content="Malith Perera">
 <link rel="stylesheet" href="css/style.css" type="text/css"  media="screen, projection">
 <script src="js/pages.js"></script>
@@ -29,14 +29,13 @@
 <div style="display:inline-block; width:50%; clear:both;">
 <div id="right_top_space" style="display:inline-block;"></div>
 
-<div style="box-shadow: 8px 8px 8px grey; border-style: outset; border-radius:10px; padding-top: 60px; padding-bottom:60px; width:50%">
-
+<div style="box-shadow: 8px 8px 8px grey; border-style: outset; border-radius:10px; padding:20px; padding-top:60px; padding-bottom:60px; width:50%">
 <form method="post" action="register_school.php"> <!-- check for htmlspecialchars security -->
 <table style="margin:0 auto;">
 <tbody>
 <tr><td style="padding:5px;"><input type="text" name="school_name" placeholder="School Name" style="color:#888888; border-radius: 20px; font-size:1.5em;"></td></tr>
 <tr><td style="padding:5px;"><input type="text" name="school_place" placeholder="City/Town/Village" style="color:#888888; border-radius: 20px; font-size:1.5em;"></td></tr>
-<tr><td style="text-align:center; padding:5px; "><input type="submit" name="password" value="Create" style="color:white; border-radius: 8px; font-size:1.5em; width:100%; padding:8px; background-color:#1877f2;"></td></tr>
+<tr><td style="text-align:center; padding:5px; "><input type="submit" name="password" value="Search" style="color:white; border-radius: 8px; font-size:1.5em; width:100%; padding:8px; background-color:#1877f2;"></td></tr>
 </tbody>
 </table>
 <input type="hidden" id="web" name="web">

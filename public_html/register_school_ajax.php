@@ -1,16 +1,4 @@
-<?php
-// Check database username password
-$servername = "localhost";
-$username = "malith";
-$password = "Lamayage 2";
-$dbname = "school_db";
-
-function test_input($data) {
-    $data = trim($data);            // Strip unnecessary characters (extra space, tab, newline)
-    $data = stripslashes($data);    // Remove backslashes (\) from the user input
-    $data = htmlspecialchars($data);// converts special characters to HTML entities
-    return $data;
-}
+<?php include 'db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $web = test_input($_GET["web"]);
@@ -23,16 +11,24 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         die("Connection failed in register_school.php: " . mysqli_connect_error());
     }
 
-    $sql = "SELECT school_id FROM schools WHERE web = '" . $web . "'";
+    $sql = "SELECT school, place,  web FROM schools WHERE web = '" . $web . "'";
 
     $result = mysqli_query($conn_get, $sql);
 
+    $rows = array();
+
+    // Fetch all
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
     if (mysqli_num_rows($result) > 0) {
-         echo "1";
+         echo json_encode($rows);
     }
     else {
-        echo "0";
+        echo "";
     }
+
+    // Free result set
+    mysqli_free_result($result);
 
     mysqli_close($conn_get);
 }

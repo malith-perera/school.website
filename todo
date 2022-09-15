@@ -1,8 +1,12 @@
 Todo
 ----
+admin ව ඇතුලත් කිරීමට අයදුම් පතක් හදන්න
+
+Errors
+------
 
 
-updates
+Updates
 -------
 file : check index.html form
 line : <form method="post" action="register_school.php">

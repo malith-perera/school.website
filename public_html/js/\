@@ -8,14 +8,11 @@ function set_school_name(str)
     {
         document.getElementById("web").value = name + "-" + place;
         document.getElementById("school_name_error").innerHTML = "";
-        check_web(document.getElementById("web").value);
     }
     else
     {
         document.getElementById("web").value = name + place;
-        document.getElementById("school_name_error").innerHTML = "*";
-        document.getElementById("submitbtn").innerHTML = "<div style='width:100%; text-align:right'><input type='submit' name='registerbtn' value='ලියාපදිංචි කරන්න' disabled></div>";
-        document.getElementById("message").innerHTML = "<div style='width:100%; text-align:center; color:red;'>* හිස් නොවිය යුතුය</div>";
+        document.getElementById("school_name_error").innerHTML = "හිස් නොවිය යුතුය";
     }
 }
 
@@ -28,20 +25,16 @@ function set_school_name_place(str)
     {
         document.getElementById("web").value = name + "-" + place;
         document.getElementById("school_place_error").innerHTML = "";
-        check_web(document.getElementById("web").value);
     }
     else
     {
         document.getElementById("web").value = name;
-        document.getElementById("school_place_error").innerHTML = "*";
-        document.getElementById("submitbtn").innerHTML = "<div style='width:100%; text-align:right'><input type='submit' name='registerbtn' value='ලියාපදිංචි කරන්න' disabled></div>";
-        document.getElementById("message").innerHTML = "<div style='width:100%; text-align:center; color:red;'>* හිස් නොවිය යුතුය</div>";
+        document.getElementById("school_place_error").innerHTML = "හිස් නොවිය යුතුය";
     }
 }
 
 
-function check_web(web_str)
-{
+function check_web(web_str) {
     if (web_str == "")
     {
         document.getElementById("message").innerHTML = "<div style='width:100%; text-align:center; color:red;'>හිස් නොවිය යුතුය</div>";
@@ -59,7 +52,7 @@ function check_web(web_str)
                 if (this.responseText == "")  // web address not exist
                 {
                     document.getElementById("message").innerHTML = "<div style='width:100%; text-align:right; color:green;'>මෙම නම ලියාපදිංචි කල හැක</div>";
-                    document.getElementById("submitbtn").innerHTML = "<div style='width:100%; text-align:right'><input type='submit' name='registerbtn' value='ලියාපදිංචි කරන්න' style='background-color: #55AA77; color:white; border:none; text-decoration: none; cursor: pointer; padding: 4px 8px; margin: 1px 1px;' disabled></div>";
+                    document.getElementById("submitbtn").innerHTML = "<div style='width:100%; text-align:right'><input type='submit' name='registerbtn' value='ලියාපදිංචි කරන්න' style='background-color: #55AA77; color:white; border:none; text-decoration: none; cursor: pointer; padding: 4px 8px; margin: 1px 1px;'></div>";
                     document.getElementById("school_table").innerHTML = "";
                 }
                 else  // web address exist

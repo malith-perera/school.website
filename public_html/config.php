@@ -140,8 +140,9 @@ function create_schools_table()
         email       VARCHAR(256),
         telephone   INT(6) UNSIGNED,
         country_id  INT(2) UNSIGNED,
-        school_ref  VARCHAR(128),                      /* school_ref is given by school staff */
-        description VARCHAR(1024)
+        school_ref  VARCHAR(128),               /* school_ref given by government or any other institute to identify */
+        description VARCHAR(1024),
+        status      VARCHAR(1)                  /* unconfirmed - u, confirmed - c, active - a, inactive - i */
     )";
 
     if (mysqli_query($conn, $sql)) {
