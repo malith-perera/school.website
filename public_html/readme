@@ -1,0 +1,5 @@
+// Create all school.website database and tables
+sudo php config.php
+
+// Drop all school.website databasses
+sudo php drop_tables.php

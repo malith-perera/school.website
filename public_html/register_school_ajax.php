@@ -1,17 +1,17 @@
 <?php include 'db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $web = test_input($_GET["web"]);
+    $school_web = test_input($_GET["school_web"]);
 
     // Create connection
-    $conn_get = mysqli_connect($servername, $username, $password, $dbname);
+    $conn_get = mysqli_connect($servername, $username, $password, "school_db");
 
     // Check connection
     if (!$conn_get) {
         die("Connection failed in register_school.php: " . mysqli_connect_error());
     }
 
-    $sql = "SELECT school, place,  web FROM schools WHERE web = '" . $web . "'";
+    $sql = "SELECT school, place,  school_web FROM schools WHERE school_web = '" . $school_web . "'";
 
     $result = mysqli_query($conn_get, $sql);
 

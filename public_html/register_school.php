@@ -1,34 +1,32 @@
- <?php include 'db.php';
+<?php include 'db.php';
+
+// Start the session
+session_start();
 
 // define variables and set to empty values
-$school_name = $school_place = "";
+$school_name = $school_place = $school_web = "";
 $school_name_error = $school_place_error = "";
 $table_found = "";
 $submit_pressed = 0;
-$address_passed = 0;
-$web = "";
+$school_web = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["school_name"])) {
-        $school_name_error = "පාසලේ නම අවශ්‍යයි";
-    } else {
+    if (!empty($_POST["school_name"])) {
         $school_name = test_input($_POST["school_name"]);
     }
 
-    if (empty($_POST["school_place"])) {
-        $school_place_error = "පාසල පිහිටි ප්‍රදේශය අවශ්‍යයි";
-    } else {
+    if (!empty($_POST["school_place"])) {
         $school_place = test_input($_POST["school_place"]);
     }
 
-    if (empty($_POST["web"])) {
-        $web_error = "වෙබ් ලිපිනය අවශ්‍යයි";
-    } else {
-        $web = test_input($_POST["web"]);
-        $web = strtolower($web);
+    if (!empty($_POST["school_web"])) {
+        $school_web = test_input($_POST["school_web"]);
+        $school_web = strtolower($school_web);
     }
 
-    $submit_pressed = test_input($_POST["submit_pressed"]);
+    if (!empty($_POST["submit_pressed"])) {
+        $submit_pressed = test_input($_POST["submit_pressed"]);
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -56,40 +54,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div style="display:inline-block; width:100%; text-align:center">
 
-<h2>පාසල ලියාපදිංචි කිරීම</h2>
+<h2>වෙබ් ලිපිනය ලියාපදිංචි කිරීම</h2>
+
+<!--  -->
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 <table style="margin:0 auto;">
 <tbody>
 <tr>
 <td style="text-align:left">පාසල</td>
-<td><input type="text" name="school_name" id="school_name" oninput="set_school_name(this.value);" value="<?php echo $school_name?>"></td>
+<td><input type="text" name="school_name" id="school_name" oninput="check_name_place();" value="<?php echo $school_name?>"></td>
 <td style="text-align:left"><span id="school_name_error" style="color:red"></span></td>
 </tr>
 <tr>
 <td style="text-align:left">ස්ථානය</td>
-<td><input type="text" name ="school_place" id="school_place" oninput="set_school_name_place(this.value);" value="<?php echo $school_place?>"></td>
+<td><input type="text" name ="school_place" id="school_place" oninput="check_name_place();" value="<?php echo $school_place?>"></td>
 <td style="text-align:left"><span id="school_place_error" style="color:red"></span></td>
 </tr>
 <tr>
-<td style="text-align:left">වෙබ් ලිපිනය</td>
-<td><input type="text" name="web" id="web" oninput="check_web(this.value)"></td>
+<td style="text-align:left">නව වෙබ් ලිපිනය</td>
+<td><input type="text" name="school_web" id="school_web" oninput="check_web(this.value)"></td>
 <td style="font-size:1.2em; font-family:arial; text-align:left">.school.website</td>
 </tr>
 <tr>
 <td></td>
-<td id="message">
+<td id="message"> <!-- from script -->
 </td>
 <td></td>
 </tr>
 <tr>
 <td></td>
-<td id="submitbtn"></td>
+<td id="submitbtn"></td> <!-- from script -->
 <td></td>
 </tr>
 </tbody>
 </table>
-<input  type="hidden" name="submit_pressed" value="1"> <!-- used to identify submit button pressed or not before save data -->
+<input type="hidden" name="submit_pressed" value="1"> <!-- used to identify submit button pressed or not before save data -->
 </form>
 
 <br><br><br><br>
@@ -102,46 +102,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div> <!-- center content -->
 
 <!-- footer -->
-<?php include 'footer.php';
-footer_view();
-?>
+<span id="footer"></span>
 
 <script>
-var text_school_name = document.getElementById("school_name").value;
-set_school_name(text_school_name);
-var text_school_place = document.getElementById("school_place").value;
-set_school_name_place(text_school_place);
-check_web(document.getElementById("web").value);
+check_name_place();
+footer_view();
 </script>
 
 <?php
-if ($school_name != "" && $school_place != "" && $web != "")
+if ($submit_pressed)
 {
-    // Create connection
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
-
-    // Check connection
-    if (!$conn)
+    if ($school_name != "" && $school_place != "" && $school_web != "")
     {
-        die("Connection failed here: " . mysqli_connect_error());
-    }
+        // Create connection
+        $conn = mysqli_connect($servername, $username, $password, "school_db");
 
-    if ($submit_pressed == 1)
+        // Check connection
+        if (!$conn)
+        {
+            die("Connection failed here: " . mysqli_connect_error());
+        }
+
+        $sql_select = "SELECT school_id FROM schools WHERE school_web='$school_web'";
+
+        $result = mysqli_query($conn, $sql_select);
+
+        if (!(mysqli_num_rows($result)> 0))
+        {
+            $sql = "INSERT INTO schools (school, place, school_web, status)
+                VALUES ('$school_name', '$school_place', '$school_web', 'u')";
+
+            if (mysqli_query($conn, $sql))
+            {
+                $last_id = mysqli_insert_id($conn);
+                $_SESSION["school_id"] = $last_id;
+                $_SESSION["school_name"] = $school_name;
+                $_SESSION["school_place"] = $school_place;
+                $_SESSION["school_web"] = $school_web;
+                header("Location: register_school_info.php");
+            }
+            else
+            {
+                echo '<script type="text/javascript">
+                window.onload = function () { alert("Data Error!\nPlease try again later"); }
+                </script>';
+
+                // ****** save below messsage in error log
+                //echo "Error: school registration failed" . $sql . "<br>" . mysqli_error($conn);
+            }
+        }
+        mysqli_close($conn);
+    }
+    else
     {
-        $sql = "INSERT INTO schools (school, place, web)
-            VALUES ('$school_name', '$school_place', '$web')";
-
-        if (mysqli_query($conn, $sql))
-        {
-            $last_id = mysqli_insert_id($conn);
-            echo "School web address registered successfully. Last inserted ID is: " . $last_id;
-        }
-        else
-        {
-            echo "Error: school registration failed" . $sql . "<br>" . mysqli_error($conn);
-        }
+        echo '<script type="text/javascript">
+        window.onload = function () { alert("Something wrong!\nNot all data fields were filled"); }
+        </script>';
     }
-    mysqli_close($conn);
 }
 ?>
 
