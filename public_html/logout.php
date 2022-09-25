@@ -1,8 +1,12 @@
 <?php
 session_start();
 
-$_SESSION["username"] = null;
+// remove all session variables
+session_unset();
 
-header("Location: index.html");
+// destroy the session
+session_destroy();
+
+header("Location: http://school.website");
 
 ?>

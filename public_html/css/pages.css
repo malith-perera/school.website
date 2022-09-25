@@ -1,0 +1,23 @@
+.taskbox {
+    border:1px solid #aaaaaa;
+    color:#6677cc;
+    height:2em;
+    padding:4px;
+    font-weight:bold;
+}
+
+.taskbox a {
+display: block;
+background: #c8c8c8;
+height: 100%;
+text-align: center;
+}
+
+.taskbox a:hover {
+    background: #e1e1e1;
+}
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    padding:2px;
+}

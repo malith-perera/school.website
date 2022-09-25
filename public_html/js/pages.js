@@ -126,8 +126,8 @@ function form_push_down()
 
 function check_password()
 {
-    var pw1 = document.getElementById("password").value;
-    var pw2 = document.getElementById("password2").value;
+    var pw1 = document.getElementById("pword").value;
+    var pw2 = document.getElementById("pword2").value;
 
     if (pw1.length >= 4)
     {

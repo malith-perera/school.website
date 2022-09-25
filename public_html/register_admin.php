@@ -4,16 +4,21 @@
 session_start();
 
 // define variables and set to empty values
-$admition_no_error = $fname_error = $lname_error = $grade_error = $class_name_error = $password_error = $login_error = "";
-$admition_no = $fname = $lname = $grade = $class_name = $password_input = "";
+$admition_no_error = $fname_error = $lname_error = $grade_error = $class_name_error = $pword_error = $login_error = "";
+$admition_no = $fname = $lname = $grade = $class_name = $pword = "";
 
 $email_error = "";
 $submit_pressed = "";
+$user_id = 0;
 
 // Form values
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST["submit_pressed"])) {
         $submit_pressed = test_input($_POST["submit_pressed"]);
+    }
+
+    if (!empty($_POST["pword"])) {
+        $pword = test_input($_POST["pword"]);
     }
 }
 
@@ -24,14 +29,11 @@ if (!empty($_SESSION["school_web"])) {
 }
 
 
-if (!empty($_SESSION["school_web"])) {
-    $school_id = test_input($_SESSION["school_id"]);
-}
 
 
 if ($submit_pressed)
 {
-    if ($password != "")
+    if ($pword != "")
     {
         // Create connection
         $conn = mysqli_connect($servername, $username, $password, "user_db");
@@ -41,11 +43,14 @@ if ($submit_pressed)
         }
 
         $sql = "INSERT INTO users (username, password, user_type)
-            VALUES ('$school_web', '$password', 'a')";
+            VALUES ('$school_web', '$pword', 'a')";
 
         if (mysqli_query($conn, $sql))
         {
-            header("Location: http://primary-hettipola.school.website");
+            $last_id = mysqli_insert_id($conn);
+            $_SESSION["user_id"] = $last_id;
+            $_SESSION["user_name"] = $school_web;
+            header("Location: http://mahindodaya-hettipola.school.website");
         }
         else
         {
@@ -69,7 +74,7 @@ if ($submit_pressed)
 <title>පාලක ලියාපදිංචි වීමකිකිරීම</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
-<link rel="icon" href="images/logo.jpg">
+<link rel="icon" href="images/logo.png">
 <meta name=”viewport” content=”width=device-width, initial-scale=1″>
 <meta name="KeyWords" content="hettipola, mahindodaya, maha, vidyalaya, school, sri lanka, kurunegala, north western province, wayamba">
 <meta name="Description" content="හෙට්ටිපොල මහින්දෝදය මහා විද්‍යාලීය වෙබ් අඩවිය. ">
@@ -101,13 +106,13 @@ echo $school_web;
 </tr>
 <tr>
 <td style="text-align:left">මුරපදය</td>
-<td><input type="password" id="password" name="password" oninput="check_password();"></td>
-<td><span class="login_err"><?php echo $password_error;?></span></td>
+<td><input type="password" id="pword" name="pword" oninput="check_password();"></td>
+<td><span class="login_err"><?php echo $pword_error;?></span></td>
 </tr>
 <tr>
 <td style="text-align:left">මුරපදය නැවතත්</td>
-<td><input type="password" id="password2" name="password2" oninput="check_password();"></td>
-<td><span class="login_err"><?php echo $password_error;?></span></td>
+<td><input type="password" id="pword2" name="pword2" oninput="check_password();"></td>
+<td><span class="login_err"><?php echo $pword_error;?></span></td>
 </tr>
 <tr>
 <td id="message" colspan="3"></td>

@@ -1,48 +1,35 @@
- <?php
-// Check database username password
-$servername = "localhost";
-$username = "malith";
-$password = "Lamayage 2";
-$dbname = "school_db";
+<?php include 'db.php';
 
 // Start the session
 session_start();
 
-function test_input($data) {
-    $data = trim($data);            // Strip unnecessary characters (extra space, tab, newline)
-    $data = stripslashes($data);    // Remove backslashes (\) from the user input
-    $data = htmlspecialchars($data);// converts special characters to HTML entities
-    return $data;
-}
+$uname = $pword = "";
 
-// define variables and set to empty values
-$username_error = $password_error = $login_error = "";
-$username_input = $password_input = "";
-
+// Form values
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["username"])) {
-        $username_error = "පරිශීලක අවශ්‍යයි";
-    } else {
-        $username_input = test_input($_POST["username"]);
+    if (!empty($_POST["submit_pressed"])) {
+        $submit_pressed = test_input($_POST["submit_pressed"]);
     }
 
-    if (empty($_POST["password"])) {
-        $password_error = "මුරපදය අවශ්‍යයි";
-    } else {
-        $password_input = test_input($_POST["password"]);
+    if (!empty($_POST["uname"])) {
+        $uname = test_input($_POST["uname"]);
+    }
+
+    if (!empty($_POST["pword"])) {
+        $pword = test_input($_POST["pword"]);
     }
 }
 
-if ($username_input != "" && $password_input != "")
+if ($uname != "" && $pword != "")
 {
     // Create connection
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    $conn = mysqli_connect($servername, $username, $password, "user_db");
     // Check connection
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "SELECT password, user_type FROM users WHERE username='$username_input' ";
+    $sql = "SELECT user_id, password, user_type FROM users WHERE username='$uname' ";
 
     $result = mysqli_query($conn, $sql);
 
@@ -50,23 +37,24 @@ if ($username_input != "" && $password_input != "")
         // output data of each row
         $row = mysqli_fetch_assoc($result);
 
-        if ($row["password"] == $password_input)
+        if ($row["password"] == $pword)
         {
-            $_SESSION["username"] = $username_input;
+            $_SESSION["user_id"] = $row["user_id"];
+            $_SESSION["username"] = $uname;
 
             switch ($row["user_type"])
             {
                 case "s":
-                    header("Location: student_page.php");
-                    break;
-                case "t":
-                    header("Location: teacher_page.php");
-                    break;
-                case "p":
-                    header("Location: principal_page.php");
+                    header("Location: page_student.php");
                     break;
                 case "a":
-                    header("Location: admin_page.php");
+                    header("Location: page_admin.php");
+                    break;
+                case "t":
+                    header("Location: page_teacher.php");
+                    break;
+                case "p":
+                    header("Location: page_principal.php");
                     break;
                 default:
                     echo "Unknown user";
@@ -80,7 +68,6 @@ if ($username_input != "" && $password_input != "")
         $login_error = "පරිශීලක නම හෝ මුරපදය නිවැරදි නොවේ";
     }
 }
-
 mysqli_close($conn);
 
 ?>
@@ -88,95 +75,65 @@ mysqli_close($conn);
 <html class="" lang="en-US">
 
 <head>
-<title>ලොග් වීම</title>
+<title>school.website</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
-<link rel="icon" href="images/logo.jpg">
+<link rel="icon" href="images/logo.png">
 <meta name=”viewport” content=”width=device-width, initial-scale=1″>
-<meta name="KeyWords" content="hettipola, mahindodaya, maha, vidyalaya, school, sri lanka, kurunegala, north western province, wayamba">
-<meta name="Description" content="හෙට්ටිපොල මහින්දෝදය මහා විද්‍යාලීය වෙබ් අඩවිය. ">
+<meta name="KeyWords" content="school, website, create, register">
+<meta name="Description" content="Create a wholly new, full fledge school website for your school or expand your existing school website into a full functional website in few seconds. School website users can publish lessons, do online tests, make school announcements, mark attendence, generate, view and compare school reports, manage school accounts, handle new recruitments, keep a good connection with students, teachers and parents and do many more.">
 <meta name="author" content="Malith Perera">
 <link rel="stylesheet" href="css/style.css" type="text/css"  media="screen, projection">
+<script src="js/pages.js"></script>
 </head>
 
-<body>
+<body class="centercontent">
+<!-- begin content -->
+<div style="background-color:#f2f0f5; height:900px;">
 
-<div class="centercontent">
+<!-- div left begin -->
+<div style="display:inline-block; width:50%; height:100%; text-align: right; float:left">
+<div id="left_top_space" style="display:inline-block;"></div>
+<div style="width:100%; text-align:right;"><img src="images/logo.png"></div>
+<div><p class="fontfamilysans" style="font-size:1.8em; padding-right:10px;">The world of school websites</p></div>
+</div> <!-- div left end -->
 
-<div style="background-color: #99ccbb; width: 100%; height: 60px; border-radius: 0px 0px 16px 16px; clear: both;">
-<a class="menuanchor" href=""><div class="menubutton">විස්තර</div></a>
-<a class="menuanchor" href=""><div class="menubutton">සබඳතා</div></a>
-<a class="menuanchor" href=""><div class="menubutton">ඉතිහාසය</div></a>
-<a class="menuanchor" href=""><div class="menubutton">මුල් පිටුව</div></a>
-</div>
+<!-- div right begin -->
+<div style="display:inline-block; width:50%; clear:both;">
+<div id="right_top_space" style="display:inline-block;"></div>
 
-<hr class="blueline" style="clear:both;">
-
-<h2>ලොග් වීම</h2>
-
-<hr class="blueline">
-
+<p class="fontfamilysans" style="padding-top:20px; font-size:1em;">We care children than anything.</p>
+<div style="box-shadow: 8px 8px 8px grey; border-style: outset; border-radius:10px; padding:20px; padding-top:60px; padding-bottom:60px; width:50%">
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-<div style="text-align:center; padding:5px;">
-<table>
+<table style="margin:0 auto;">
 <tbody>
-<tr>
-<td>පරිශීලක</td>
-<td><input type="text" name="username"></td>
-<td><span class="login_err"><?php echo $username_error;?></span></td>
-</tr>
-<tr>
-<td>මුරපදය</td>
-<td><input type="password" name="password"></td>
-<td><span class="login_err"><?php echo $password_error;?></span></td>
-</tr>
-<tr>
-<td></td>
-<td style="text-align:right"><input type="submit" name="login" value="ලොග් වන්න"></td>
-</tr>
+<tr><td style="padding:5px;"><input type="text" name="uname" placeholder="Username" style="color:#888888; border-radius: 20px; font-size:1.2em;"></td></tr>
+<tr><td style="padding:5px;"><input type="password" name="pword" placeholder="Password" style="color:#888888; border-radius: 20px; font-size:1.2em;"></td></tr>
+<tr><td style="color:red;"><?php echo $login_error ?></td></tr>
+<tr><td style="text-align:center; padding:5px; "><input type="submit" name="password" value="Login" style="color:white; border-radius: 8px; width:100%; padding:8px; background-color:#1877f2; font-size:1.2em;"></td></tr>
 </tbody>
 </table>
-</div>
+<input type="hidden" id="submit_pressed" name="submit_pressed" value="1">
 </form>
-
-<div class="login_err"><?php echo $login_error;?></div>
-
-<div><a href="change_password.php">මුරපදය වෙනස් කරන්න</a></div>
-<div><a href="forget_password.html">මුරපදය අමතකයි</a></div>
-
-<hr class="blueline">
-<hr class="blueline">
-
-<div>&nbsp;</div>
-
-<div class="centercontent footer" style="width: 100%; margin-top: 30px; border-radius: 8px 8px 0px 0px;">
-
-<table class="centercontent" style="width: 100%; margin: 0px;">
-<tbody>
-<tr style="vertical-align:top">
-<td class="footertext" style="text-align: center;">
-<img src="images/logo.jpg" alt="logo" width="20%">
-</td>
-<td>
-<div class="footercaption">වෙත යන්න</div>
-<p style="color:white">මුල් පිටුව<br></p>
-</td>
-<td>
-<div class="footercaption">ස්ථානය</div>
-<p style="color:white">හෙට්ටිපොල</p>
-</td>
-<td>
-<div class="footercaption">දුරකතන</div>
-<p style="color:white">0372223332</p>
-</td>
-</tr>
-</tbody>
-</table>
-
-<div style="background-color: black; color:#9f9f9f; width: 100%; text-align: center; padding-top: 8px; padding-bottom: 6px;">&copy; 2021</div>
 </div>
 
-</div> <!-- center content -->
+<br>
+<div><a href="signup.html"><input type="button" name="signup" value="Sign up" style="color:white; border-radius: 8px; font-size:1.2em; padding:8px; background-color:#1877f2; "></a></div>
+<div><a href="http://school.website"><input type="button" name="register" value="Create a school website" style="color:white; border-radius: 8px; font-size:1.2em; padding:8px; background-color:#1877f2;"></a></div>
+<br>
+
+<a href="" style="text-decoration:none; color:darkblue;">Learn More</a>
+</div> <!-- div right end -->
+
+</div> <!-- end content -->
+
+<!-- footer -->
+<span id="footer"></span>
+
+<script>
+form_push_down();
+footer_view();
+</script>
 
 </body>
 </html>

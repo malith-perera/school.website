@@ -134,7 +134,6 @@ mysqli_close($conn);
 <a class="menuanchor" href=""><div class="menubutton">මුල් පිටුව</div></a>
 </div>
 
-
 <hr class="blueline" style="clear:both;">
 
 <h2>සිසුන් ලියාපදිංචි කිරීම</h2>

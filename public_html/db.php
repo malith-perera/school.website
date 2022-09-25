@@ -131,7 +131,7 @@ function create_system_users_table()
         telephone_id    INT(6) UNSIGNED,
         username        VARCHAR(255) NOT NULL,              /* 0 - school.website based, 1 - email based, 2 - telephone number based */
         password        VARCHAR(15) NOT NULL,
-        user_type       VARCHAR(2) NOT NULL,                /* a - admin, p - principal, v - vice principal, 3 - teacher, s - student, r - parent, n - none academic staff, 0 - old student,  n - school analist and donar */
+        user_type       VARCHAR(7) NOT NULL,                /* a - admin, p - principal, v - vice principal, t - teacher, s - student, r - parent, n - none academic staff, o - old student,  d - doner, y - analyst */
         first_name      VARCHAR(63),
         last_name       VARCHAR(63),
         full_name       VARCHAR(255),
