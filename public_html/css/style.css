@@ -4,17 +4,9 @@ body {
   padding: 0px;
 }
 
-.fontfamilyserif {
-  font-family: "Times New Roman", Times, serif;
-}
-
-.fontfamilysans {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 .centercontent {
   margin: auto;
-  width: 90%;
+  width: 80%;
   clear: both;
 }
 
@@ -96,7 +88,6 @@ body {
   margin: 8px;
 }
 
-
 #classheader {
   text-align: left;
   font-size: 14px;
@@ -119,7 +110,7 @@ input[type=text] {
   /*background-image: url('../images/search.png');*/
   background-position: 8px 8px; 
   background-repeat: no-repeat;
-  padding: 8px 8px 8px 40px;
+  padding: 8px 8px 8px 8px;
 }
 
 input[type=password] {
@@ -229,12 +220,8 @@ input[type=button] {
 }
 
 .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
 }
+
 
 td.footertext {
   color: white;
@@ -346,11 +333,11 @@ input[type=text] {
   border-radius: 0px;
   font-size: 14px;
   background-color: white;
-  background-image: url('../images/search.png');
+  /*background-image: url('../images/search.png');*/
   background-position: 8px 8px; 
   background-repeat: no-repeat;
   background-size: 22px 22px;
-  padding: 8px 8px 8px 64px;
+  padding: 8px 8px 8px 8px;
 }
 
 input[type=button] {
@@ -415,6 +402,7 @@ input[type=button] {
 
 .footercaption {
   font-weight: bold;
+  color: #44ff44;
   font-size: 16px;
   padding-bottom: 10px;
 }
@@ -623,6 +611,8 @@ input[type=button] {
   color: darkgray;
   text-align: left;
   font-weight: 200;
+}
+
 }
 
 

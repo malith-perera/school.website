@@ -1,4 +1,6 @@
- <?php include 'db.php';
+ <?php
+ include '../scripts/school.php';
+
 
 // Start the session
 session_start();
@@ -10,6 +12,7 @@ $admition_no = $fname = $lname = $grade = $class_name = $pword = "";
 $email_error = "";
 $submit_pressed = "";
 $user_id = 0;
+$school_web_db = "";
 
 // Form values
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -26,10 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if (!empty($_SESSION["school_web"])) {
     $school_web = test_input($_SESSION["school_web"]);
     $school_web = strtolower($school_web);
+    $school_web_db = get_school_db_from_web($school_web_db); // scripts/system.php
 }
-
-
-
 
 if ($submit_pressed)
 {
@@ -42,14 +43,15 @@ if ($submit_pressed)
             die("Connection failed: " . mysqli_connect_error());
         }
 
-        $sql = "INSERT INTO users (username, password, user_type)
-            VALUES ('$school_web', '$pword', 'a')";
+        $sql = "INSERT INTO users (school_web, username, password, user_type)
+            VALUES ('$school_web', 'admin', '$pword', 'a')";
 
         if (mysqli_query($conn, $sql))
         {
             $last_id = mysqli_insert_id($conn);
             $_SESSION["user_id"] = $last_id;
             $_SESSION["user_name"] = $school_web;
+            create_school_related_database_and_tables($school_web_db);
             header("Location: http://mahindodaya-hettipola.school.website");
         }
         else
@@ -81,6 +83,7 @@ if ($submit_pressed)
 <meta name="author" content="Malith Perera">
 <link rel="stylesheet" href="css/style.css" type="text/css"  media="screen, projection">
 <script src="js/pages.js"></script>
+<script src="js/password.js"></script>
 </head>
 
 <body>
@@ -99,7 +102,7 @@ if ($submit_pressed)
 <td style="text-align:left;">පරිශීලක නම</td>
 <td style="text-align:left;">
 <?php
-echo $school_web;
+echo 'admin';
 ?>
 </td>
 <td></td>

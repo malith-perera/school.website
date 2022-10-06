@@ -43,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <meta name="author" content="Malith Perera">
 <link rel="stylesheet" href="css/style.css" type="text/css"  media="screen, projection">
 <script src="js/pages.js"></script>
+<script src="js/register_school.js"></script>
 </head>
 
 <body>
@@ -63,23 +64,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <tbody>
 <tr>
 <td style="text-align:left">පාසල</td>
-<td><input type="text" name="school_name" id="school_name" oninput="check_name_place();" value="<?php echo $school_name?>"></td>
+<td><input type="text" name="school_name" id="school_name" style="width:20em;" oninput="check_name_place();" value="<?php echo $school_name?>"></td>
 <td style="text-align:left"><span id="school_name_error" style="color:red"></span></td>
 </tr>
 <tr>
 <td style="text-align:left">ස්ථානය</td>
-<td><input type="text" name ="school_place" id="school_place" oninput="check_name_place();" value="<?php echo $school_place?>"></td>
+<td><input type="text" name ="school_place" id="school_place" style="width:20em;" oninput="check_name_place();" value="<?php echo $school_place?>"></td>
 <td style="text-align:left"><span id="school_place_error" style="color:red"></span></td>
 </tr>
 <tr>
-<td style="text-align:left">නව වෙබ් ලිපිනය</td>
-<td><input type="text" name="school_web" id="school_web" oninput="check_web(this.value)"></td>
-<td style="font-size:1.2em; font-family:arial; text-align:left">.school.website</td>
+<td style="text-align:left">වෙබ් ලිපිනය</td>
+<td><input type="text" name="school_web" id="school_web" style="width:20em;" oninput="check_web(this.value)"></td>
+<td style="font-family:arial;">.school.website</td>
 </tr>
 <tr>
 <td></td>
-<td id="message"> <!-- from script -->
-</td>
+<td id="message"></td> <!-- from script -->
 <td></td>
 </tr>
 <tr>

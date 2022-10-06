@@ -98,7 +98,7 @@ if (!empty($_SESSION["school_id"])) {
 <td></td>
 </tr>
 <tr>
-<td style="text-align:left">නව වෙබ් ලිපිනය</td>
+<td style="text-align:left">වෙබ් ලිපිනය</td>
 <td style="text-align:left"><?php echo $school_web?>.school.website</td>
 <td></td>
 </tr>
@@ -114,17 +114,17 @@ if (!empty($_SESSION["school_id"])) {
 
 <tr>
 <td style="text-align:left">ලිපිනය</td>
-<td><input type="text" name="address" id="address"></td>
+<td style="text-align:left"><input type="text" name="address" id="address" style="width:20em;"></td>
 <td style="text-align:left"><span id="address_error" style="color:red"></span></td>
 </tr>
 <tr>
 <td style="text-align:left">දුරකතන අංකය</td>
-<td><input type="text" name ="telephone" id="telephone"></td>
+<td style="text-align:left"><input type="text" name ="telephone" id="telephone" style="width:20em;"></td>
 <td style="text-align:left"><span id="telephone_error" style="color:red"></span></td>
 </tr>
 <tr>
 <td style="text-align:left">විද්‍යුත් තැපෑල</td>
-<td><input type="text" name="email" id="email"></td>
+<td style="text-align:left"><input type="text" name="email" id="email" style="width:20em;"></td>
 <td style="text-align:left"><span id="email_error" style="color:red"></span></td>
 </tr>
 <!--
