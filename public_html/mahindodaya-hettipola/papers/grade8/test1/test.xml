@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<paper>
+
+<phead>
+<ptitle>මාසික ඇගයීම් පරීක්ෂණ 2024</ptitle>
+<institute>කුලි/හෙට්ටිපොල මහා විද්‍යාලය</institute>
+<grade>8</grade>
+<subject>ගණිතය</subject>
+<description>සිසු දරු දැරියන්ගේ සාධන මට්ටම ඉහල නැන්වීම සඳහා වන මාසික ඇගයීම් පරීක්ෂණය</description>
+<paperNo>I පත්‍රය</paperNo>
+<author>J.P.රොහාෂා මල්ෂි</author>
+<time>පැය 1 මිනිත්තු 30</time>
+<score>2.5</score>
+</phead>
+
+<question>
+<qtype>t</qtype>
+<qhead> </qhead>
+<ques>යම් සංඛ්‍යාවකට 25 ක් එකතු කර 7 න් බෙදූ විට පිළිතුර 5 විය. සංඛ්‍යාව කීය ද?</ques>
+<qfoot> </qfoot>
+<atype>h</atype>
+<a>5</a>
+<a>10</a>
+<a>20</a>
+<ans>2</ans>
+<score> </score>
+</question>
+
+<question>
+<qtype>t</qtype>
+<qhead> </qhead>
+<ques>යම් සංඛ්‍යාවකට 25 ක් එකතු කර 7 න් බෙදූ විට පිළිතුර 5 විය. සංඛ්‍යාව කීය ද?</ques>
+<qfoot> </qfoot>
+<atype>v</atype>
+<a>5</a>
+<a>10</a>
+<a>20</a>
+<ans>2</ans>
+<score> </score>
+</question>
+
+<question>
+<qtype>i</qtype>
+<qhead>පහත ප්‍රශ්න දෙකට පිළිතුර ලියන්න</qhead>
+<ques>යම් සංඛ්‍යාවකට 25 ක් එකතු කර 7 න් බෙදූ විට පිළිතුර 5 විය. සංඛ්‍යාව කීය ද?</ques>
+<qfoot> </qfoot>
+<atype>i</atype>
+<a> </a>
+<a> </a>
+<a> </a>
+<ans>2</ans>
+<score>5</score>
+</question>
+
+</paper>

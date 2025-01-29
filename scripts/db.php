@@ -200,7 +200,7 @@ function create_system_users_table()
     // sql to create table
     $sql = "CREATE TABLE IF NOT EXISTS users (
         user_id         INT(12) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        user_type       VARCHAR(7),                         /* a - admin, p - principal, v - vice principal, t - teacher, s - student, r - parent, n - none academic staff, o - old student,  d - doner, y - analyst */
+        user_type       VARCHAR(1),                         /* a - admin, p - principal, v - vice principal, t - teacher, s - student, r - parent, n - none academic staff, o - old student,  d - doner, y - analyst */
         name            VARCHAR(127),
         full_name       VARCHAR(255),
         email           VARCHAR(1017),                      /* https://blog.greglow.com/2019/05/17/sql-column-length-storing-email-addresses-sqlserver-database/ */

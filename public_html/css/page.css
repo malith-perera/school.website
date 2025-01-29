@@ -1,0 +1,39 @@
+button.subbtn {
+    background-color:#bcbcbc;
+    border:none;
+    color:white;
+    padding:15px 45px;
+    margin:4px;
+    text-align:center;
+    text-decoration:none;
+    display:inline-block;
+    cursor:pointer;
+    font-size:1em;
+    border-radius:5px;
+}
+
+button.sidebtn {
+    background-color:#bcbcbc;
+    border:none;
+    color:white;
+    padding:12px;
+    margin:10px;
+    text-align:center;
+    text-decoration:none;
+    display:inline-block;
+    cursor:pointer;
+    font-size:1.2em;
+    border-radius:5px;
+    width:80%;
+}
+
+.sub_menu_btn_div {
+    border-radius:5px;
+    background-color:#bcbcbc;
+    width:100%;
+    text-align:center;
+}
+
+.marks {
+    width: 3em;
+}

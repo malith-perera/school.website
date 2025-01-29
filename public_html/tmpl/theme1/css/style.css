@@ -1,0 +1,167 @@
+body {
+  width:100%;
+  margin:auto;
+  padding:0;
+}
+
+.container {
+  margin:auto;
+  width:98%;
+  background-color:#f2f0f5;
+  height:100%;
+  text-align:center;
+}
+
+.back_pad {
+  display:inline-block;
+  width:70%;
+  background-color:snow;
+}
+
+#header {
+  top:0;
+  position:sticky;
+  z-index:4;
+  color:white;
+  background-color:steelblue;
+  width:100%;
+  margin-bottom:4px;
+}
+
+#footer {
+  color:white;
+  background-color:steelblue;
+  clear:both;
+  width:100%;
+  padding-top:10px;
+  padding-bottom:5px;
+  text-align:center;
+  border-radius:0px 0px 4px 4px;
+}
+
+footer > a {
+  color:white;
+}
+
+/* nav bar */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+}
+
+.hamburger {
+  display: none;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #fff;
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-item {
+  margin-left: 5rem;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.nav-link:hover {
+  color: #aaaaaa;
+}
+
+.nav-logo {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #fff;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+
+.back_pad {
+  width:98%;
+}
+
+/* nav bar */
+.nav-menu {
+  position: fixed;
+  left: -100%;
+  top: 3.5rem;
+  flex-direction: column;
+  background-color: steelblue;
+  width: 100%;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.3s;
+  box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+  z-index = 3;
+}
+
+.nav-link {
+  color: #fff;
+}
+
+.nav-menu.active {
+  left: 0;
+}
+
+.nav-item {
+  margin: 2.5rem 0;
+}
+
+.hamburger {
+  display: block;
+  cursor: pointer;
+}
+
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.nav-logo {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #fff;
+}    
+
+}
